@@ -1,4 +1,5 @@
-exports.getBmi = (payload) => {
+export default function BasicService(){
+    const getBmi = (payload)=>{
     const {name, height, weight} = payload
     let _height = Number(height) / 100
     let _weight = Number(weight)
@@ -15,9 +16,9 @@ exports.getBmi = (payload) => {
     if (output>30)
         result.bmi = "경도비만";
     return result
-}
+    }
 
-exports.getCalc = (payload) => {
+    const getCalc = (payload) => {
     const {num1, op, num2} = payload
     let _num1 = Number(num1)
     let _num2 = Number(num2)
@@ -32,7 +33,7 @@ exports.getCalc = (payload) => {
     return result
 }
     
-exports.getGrade = (payload) => {
+    const getGrade = (payload) => {
     const {name, kor, eng, math} = payload
     let _kor = Number(kor)
     let _eng = Number(eng)
@@ -61,7 +62,7 @@ exports.getGrade = (payload) => {
 return result
 }
 
-exports.getRps =(payload)=>{
+    const getRps =(payload)=>{
     const {user}=payload
     let _user = Number(user)
     let computer = Math.floor(Math.random()*3)
@@ -104,7 +105,7 @@ exports.getRps =(payload)=>{
     return result
 }
 
-exports.getEchant =(payload)=>{
+    const getEchant =(payload)=>{
     const {item}=payload
     let percent = Math.floor(Math.random()*10)+1
     let acc= Math.floor(Math.random()*20)+1
@@ -191,4 +192,27 @@ exports.getEchant =(payload)=>{
              break;    
     }
     return result
+}
+return {
+    getBmi(req,_res){
+        res.status(200).json(getBmi(req.body))
+        return json
+    },
+    getCalc(req,_res){
+        res.status(200).json(getCalc(req.body))
+        return json
+    },
+    getGrade(req,_res){
+        res.status(200).json(getGrade(req.body))
+        return json
+    },
+    getRps(req,_res){
+        res.status(200).json(getRps(req.body))
+        return json
+    },
+    getEchant(req,_res){
+        res.status(200).json(getEchant(req.body))
+        return json
+    }
+}
 }
